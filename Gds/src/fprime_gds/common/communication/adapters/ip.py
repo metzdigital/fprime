@@ -7,6 +7,7 @@ across a Tcp and/or UDP network interface.
 
 @author lestarch
 """
+import atexit
 import abc
 import logging
 import queue
@@ -14,8 +15,8 @@ import socket
 import threading
 import time
 
-import fprime_gds.common.communication.adapters.base
 import fprime_gds.common.logger
+import fprime_gds.common.communication.adapters.base
 
 LOGGER = logging.getLogger("ip_adapter")
 
@@ -220,6 +221,7 @@ class IpHandler(abc.ABC):
         self.connected = IpHandler.CLOSED
         self.logger = logger
         self.post_connect = post_connect
+        atexit.register(self.stop)
 
     def open(self):
         """
@@ -398,6 +400,7 @@ class TcpHandler(IpHandler):
             self.client = None
             self.client_address = None
 
+
     def read_impl(self):
         """
         Specific read implementation for the TCP handler. This involves reading from the spawned client socket, not the
@@ -406,6 +409,7 @@ class TcpHandler(IpHandler):
         data = self.client.recv(IpAdapter.MAXIMUM_DATA_SIZE)
         if not data:
             self.close_impl()
+            self.open_impl()
         return data
 
     def write_impl(self, message):
