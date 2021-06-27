@@ -90,17 +90,11 @@ Unit Test Checklist | [Link](Checklist_Unit_Test.xlsx)
 
 ## 5. Dictionary
 
-Dictionaries: [HTML](PrmDb.html) [MD](PrmDb.md)
+TBD
 
 ## 6. Unit Testing
 
-[Unit Test Output](../test/ut/output/test.txt)
-
-[Coverage Output - `PrmDbImpl.cpp`](../test/ut/output/PrmDbImpl.cpp.gcov)
-
-[Coverage Output - `PrmDbComponentAc.cpp`](../test/ut/output/PrmDbComponentAc.cpp.gcov)
-
-[Report](../test/ut/output/SvcPrmDb_gcov.txt)
+To see unit test coverage run fprime-util check --coverage
 
 ## 7. Change Log
 
